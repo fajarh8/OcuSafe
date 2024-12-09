@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OcuSafe Help</title>
+    <style>
+        .accordion {
+            font-weight: bold;
+            background-color: transparent;
+            color: #1E6B3D;
+            cursor: pointer;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            transition: 0.4s;
+        }
+
+        .accordion:after {
+            content: '\002B';
+            color: #777;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+        .active:after {
+            content: "\2212";
+        }
+
+        .panel {
+            font-size: 14px;
+            padding: 0px 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+        }
+    </style>
+</head>
+<body style="margin: 1px; overflow: hidden;">
+    <div style="background-color: #C6DABF; font-family: Impact, Haettenschweiler, 'verdana', sans-serif; border-radius: 20px; height: 596px;">
+        <div style=" text-align: right; padding-top: 10px; padding-right: 10px; margin: 0px; background-color: beige; border-top-left-radius: 20px; border-top-right-radius: 20px; height: 20px;">
+            <button style="position: absolute; right: 10px; top: 8px; padding: 0px; border: none; cursor: pointer; margin: 0px; border-radius: 50%; width: 18px; height: 18px; background-color: #1E6B3D; color: aliceblue; font-size: 8px;" id="closeHelp" onclick="closeWindow(this.id)">X</button>
+        </div>
+        <div style="display: flex; width: 100%; position: fixed; padding-top: 10px; border-bottom: 2px solid #1E6B3D;">
+            <div>
+                <img src="assets/icon.ico" alt="OcuSafe Logo" style="padding: 14px; width: 60px; padding-top: 0px; padding-bottom: 5px;">
+            </div>
+            <div style="align-content: right;width: 100%; padding-top: 12px; font-size: 24px; font-weight: lighter; padding-top: 0px;">
+                <p style="margin: 0px;"><font style="color: #1E6B3D;">Ocu</font><font style="color: #FA7616;">Safe</font></p>
+                <p style="margin: 0px; color: #1E6B3D;">Help</p>
+            </div>
+        </div>
+        <div style="position: absolute; left: 0px; top: 120px; font-family: Arial, Helvetica, sans-serif;">
+            <button class="accordion">About OcuSafe</button>
+            <div class="panel">
+                <p>Aplikasi ini merupakan aplikasi offline sehingga tidak terhubung dengan media lain. Developer aplikasi dan pihak ke-3 tidak dapat mengambil data melalui aplikasi tanpa persetujuan langsung dari user. Informasi user bersifat anonim sehingga terjamin kerahasiannya.</p>
+            </div>
+            <button class="accordion">Bagaimana cara mengganti/mengatur timer?</button>
+            <div class="panel">
+                <p>Ketik angka yang diinginkan pada kotak setting time kemudian klik tombol on.</p>
+            </div>
+            <button class="accordion">Bagaimana cara mematikan pengingat?</button>
+            <div class="panel">
+                <p>Pencet tombol yang berada pada kotak setting time hingga berubah warna (sudah off).</p>
+            </div>
+            <button class="accordion">Bagaimana cara menonaktifkan aplikasi?</button>
+            <div class="panel">
+                <p>Anda dapat menghapus aplikasi melalui sistem.</p>
+            </div>
+        </div>
+        <!-- <div style="font-family: Arial, Helvetica, sans-serif; position: absolute; right: 0px; bottom: 0px; overflow-y: scroll; overflow-x: hidden; border: 1px solid black; margin: 10px;">
+            <button onclick="dropdown()" style="width: fit-content; height: fit-content; background-color: transparent;"><h3 style="font-weight: bold;">About OcuSafe</h3></button>
+            <p id="about">
+                Aplikasi ini merupakan aplikasi offline sehingga tidak terhubung dengan media lain. Developer aplikasi dan pihak ke-3 tidak dapat mengambil data melalui aplikasi tanpa persetujuan langsung dari user. Informasi user bersifat anonim sehingga terjamin kerahasiannya.
+            </p>
+            <p>
+                Bagaimana cara mengganti/mengatur timer?
+                Ketik angka yang diinginkan pada kotak setting time kemudian klik tombol on.
+                Bagaimana cara mematikan pengingat dari aplikasi?
+                Pencet tombol yang berada pada kotak setting time hingga berubah warna (sudah off)
+                Bagaimana cara menonaktifkan aplikasi secara permanen?
+                Anda dapat menghapus aplikasi melalui sistem
+            </p>
+            <br>
+        </div> -->
+    </div>
+    <!-- <script src="help.js"></script> -->
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+        
+        for (i = 0; i < acc.length; i++) {
+          acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+              panel.style.maxHeight = null;
+            } else {
+              panel.style.maxHeight = panel.scrollHeight + "px";
+            } 
+          });
+        }
+
+        function closeWindow(getElementId){
+            const {WebviewWindow} = window.__TAURI__.window,
+                invoke = window.__TAURI__.invoke,
+                helpWindow = WebviewWindow.getByLabel('helpWindow');
+
+            if(getElementId == 'closeHelp'){
+                invoke('close_window', {window: helpWindow});
+            }
+        }
+        </script>
+</body>
+</html>

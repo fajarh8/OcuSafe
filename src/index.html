@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OcuSafe</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
+</head>
+<body>
+    <audio preload="auto" id="myAudio">
+        <source
+            src="assets/notification.wav"
+            type="audio/wav"
+        />
+    </audio>
+    <div id="mainDiv">
+        <table>
+            <tr id="breaks"></tr>
+            <tr>
+                <th id="mainSetting">
+                    <p class="rowTitle" id="timeSetting">Time Setting</p>
+                    <table class="nestedForm">
+                        <tr>
+                            <td class="nestedColumn">Jam</td>
+                            <td class="nestedColumn">Menit</td>                            
+                            <td class="nestedColumn">Detik</td>
+                        </tr>
+                        <tr>
+                            <form id="hourForm" onsubmit="return false;">
+                                <td class="inputColumn">
+                                    <input
+                                        class="userInput" 
+                                        id="hour"
+                                        type="number"
+                                        maxlength="2"
+                                        placeholder="00"
+                                        value="00"
+                                        min="0"
+                                        max="24"
+                                        onfocus="uncheckButton()"
+                                        onchange="padNumber(this.id)"
+                                    />
+                                </td>
+                                <td class="inputColumn">
+                                    <input 
+                                        class="userInput" 
+                                        id="minute"
+                                        min="00"
+                                        max="59"
+                                        maxlength="2"
+                                        placeholder="00"
+                                        type="number" 
+                                        value="20"
+                                        onfocus="uncheckButton()" 
+                                        onchange="padNumber(this.id)"
+                                    />
+                                </td>
+                                <td class="inputColumn">
+                                    <input
+                                        class="userInput"
+                                        id="second"
+                                        type="number"
+                                        value="00"
+                                        maxlength="2"
+                                        min="00"
+                                        max="59"
+                                        placeholder="00"
+                                        onfocus="uncheckButton()"
+                                        onchange="padNumber(this.id)"
+                                        required
+                                    />
+                                </td>
+                                <label class="switch">
+                                    <input class="switch" id="submitForm" type="checkbox" onclick="isChecked()" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </form>
+                        </tr>
+                    </table>
+                </th>
+                <th id="nextNotification">
+                    <p id="nextNotificationText" class="rowTitle">Next Notification</p>
+                    <table class="nestedTime">
+                        <tr>
+                            <td class="timeText" id="nextHour"></td>
+                        </tr>
+                    </table>
+                    <br>
+                    <br>
+                </th>
+                <th id="screenOnTime">
+                    <p id="uptimeText" class="rowTitle">Device Up Time</p>
+                    <table class="nestedTime">
+                        <tr>
+                            <td class="timeText" id="showUpTime">Waiting</td>
+                        </tr>
+                    </table>
+                    <br>
+                    <br>
+                </th>
+            </tr>
+            <tr>
+                <th id="notificationSetting">
+                    <p class="rowTitle" id="notificationTimeSetting" style="color: #D9D9D9">Notification Setting</p>
+                    <table class="nestedForm">
+                        <tr>
+                            <td class="nestedColumn" style="color: #D9D9D9">Menit</td>                            
+                            <td class="nestedColumn" style="color: #D9D9D9">Detik</td>
+                        </tr>
+                        <tr>
+                            <form id="hourForm" onsubmit="return false;">
+                                <td class="inputColumn">
+                                    <input 
+                                        class="userInput" 
+                                        id="notificationMinute"
+                                        min="00"
+                                        max="59"
+                                        maxlength="2"
+                                        placeholder="00"
+                                        type="number" 
+                                        value="00"
+                                        onfocus="uncheckButton()"
+                                        onchange="padNumber(this.id)"
+                                        required
+                                    />
+                                </td>
+                                <td class="inputColumn">
+                                    <input
+                                        class="userInput"
+                                        id="notificationSecond"
+                                        type="number"
+                                        value="20"
+                                        maxlength="2"
+                                        min="00"
+                                        max="59"
+                                        placeholder="00"
+                                        onfocus="uncheckButton()"
+                                        onchange="padNumber(this.id)"
+                                        required
+                                    />
+                                </td>
+                            </form>
+                        </tr>
+                    </table>
+                </th>
+                <th colspan="2" id="video">
+                    <div id="rekomendasiVideo" class="slideshow-container">
+                        <div class="mySlides fade">
+                            <div class="numbertext">Rekomendasi Video</div>
+                            <img id="video1" src="https://img.youtube.com/vi/7zpoBxVLE6U/maxresdefault.jpg" alt="Video 1" onclick="openLink(this.id)">
+                            <div class="text"></div>
+                        </div>
+                        <div class="mySlides fade">
+                            <div class="numbertext">Rekomendasi Video</div>
+                            <img id="video2" src="https://img.youtube.com/vi/CRLAUIgu-HI/maxresdefault.jpg" alt="Video 2" onclick="openLink(this.id)">
+                            <div class="text"></div>
+                        </div>
+                        <div class="mySlides fade">
+                            <div class="numbertext">Rekomendasi Video</div>
+                            <img id="video3" src="https://img.youtube.com/vi/6WgmnJIVl7Y/maxresdefault.jpg" alt="Video 3" onclick="openLink(this.id)">
+                            <div class="text"></div>
+                        </div>
+                        <a class="prev" id="prevSlide" onclick="changeSlides(this.id)">❮</a>
+                        <a class="next" id="nextSlide" onclick="changeSlides(this.id)">❯</a>
+                    </div>
+                </th>
+            </tr>
+        </table>
+        <button data-tauri-drag-region id="dragged"></button>
+        <button title="Exit to Tray" id="closeButton" onclick="actionButton(this.id)">X</button>
+        <button title="Minimize" id="minimizeButton" onclick="actionButton(this.id)">_</button>
+        <button title="Help" id="helpButton" onclick="actionButton(this.id)">?</button>
+        <!-- <button title="History" id="historyButton" onclick="actionButton(this.id)">History</button> -->
+        <img src="assets/icon.ico" id="ocusafeIcon">
+        <img src="assets/uns.ico" id="unsLogo">
+    </div>
+    <script src="main.js"></script>
+    <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(window).on('load', function() {
+                padNumber("hour");
+                padNumber("minute");
+                padNumber("second");
+                padNumber("notificationMinute");
+                padNumber("notificationSecond");
+                submited();
+            });
+            $('.userInput').on('keydown keyup change', function(e){
+                if ($(this).val() > 59
+                    && e.keyCode !== 46 // keycode for delete
+                    && e.keyCode !== 8 // keycode for backspace
+                ) {
+                e.preventDefault();
+                $(this).val(59);
+                }
+            });
+            $('#hour').on('keydown keyup change', function(e){
+                if ($(this).val() > 23
+                    && e.keyCode !== 46 // keycode for delete
+                    && e.keyCode !== 8 // keycode for backspace
+                ) {
+                e.preventDefault();
+                $(this).val(23);
+                }
+            });
+        });
+    </script>  
+</body>
+</html>

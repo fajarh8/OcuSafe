@@ -1,0 +1,81 @@
+{
+  "build": {
+    "devPath": "../src",
+    "distDir": "../src",
+    "withGlobalTauri": true
+  },
+  "package": {
+    "productName": "OcuSafe",
+    "version": "1.2.0"
+  },
+  "tauri": {
+    "allowlist": {
+      "all": false,
+      "path": {
+        "all": true
+      },
+      "fs": {
+        "scope": ["$DOCUMENT/*", "$DOCUMENT/OcuSafe/*", "$RESOURCE/*"],
+        "all": true
+      },
+      "dialog": {
+        "all": false,
+        "message": true,
+        "ask": true
+      },
+      "shell": {
+        "all": false,
+        "open": true
+      },
+      "window": {
+        "all": false,
+        "create": true,
+        "setClosable": false,
+        "setResizable": true,
+        "setSize": true,
+        "setPosition": true,
+        "setFocus": true,
+        "minimize": true,
+        "center": true,
+        "show": true,
+        "hide": true,
+        "startDragging": true
+      }
+    },
+    "windows": [
+      {
+        "fullscreen": false,
+        "resizable": false,
+        "maximizable": false,
+        "closable": true,
+        "minimizable": true,
+        "title": "OcuSafe",
+        "label": "main",
+        "url": "index.html",
+        "center": true,
+        "width": 830,
+        "height": 520,
+        "transparent": true,
+        "decorations": false,
+        "focus": true
+      }
+    ],
+    "security": {
+      "csp": null
+    },
+    "bundle": {
+      "active": true,
+      "targets": "all",
+      "identifier": "ocusafe.k3.uns",
+      "publisher": "D4 K3 Universitas Sebelas Maret",
+      "icon": [
+        "icons/icon.icns",
+        "icons/icon.ico"
+      ]
+    },
+    "systemTray": {
+      "iconPath": "icons/icon.ico",
+      "iconAsTemplate": true
+    }
+  }
+}
